@@ -94,7 +94,7 @@ public class ControleDeTarefas implements GerenciadorTarefas{
         return null;
     }
 
-    private LocalDate getDataAtual() {
+    public LocalDate getDataAtual() {
         return LocalDate.now();
     }
 }

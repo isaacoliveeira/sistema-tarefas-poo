@@ -14,14 +14,14 @@ public class TarefaInterfaceUsuario {
     }
 
     public void mostrarMenu() {
-        System.out.println("Opções:");
-        System.out.println("1. Adicionar Tarefa");
-        System.out.println("2. Editar Tarefa");
-        System.out.println("3. Remover Tarefa");
-        System.out.println("4. Listar Tarefas");
-        System.out.println("5. Alterar Status da Tarefa");
-        System.out.println("6. Buscar Tarefas");
-        System.out.println("7. Sair");
+        System.out.println("----- OPÇÕES -----");
+        System.out.println("\r1. Adicionar Tarefa");
+        System.out.println("\r2. Editar Tarefa");
+        System.out.println("\r3. Remover Tarefa");
+        System.out.println("\r4. Listar Tarefas");
+        System.out.println("\r5. Alterar Status da Tarefa");
+        System.out.println("\r6. Buscar Tarefas");
+        System.out.println("\r7. Sair");
         System.out.print("Escolha uma opção: ");
     }
 
@@ -61,7 +61,7 @@ public class TarefaInterfaceUsuario {
         }
     }
 
-    private void adicionarTarefa() {
+    public void adicionarTarefa() {
         System.out.print("Digite o título da tarefa: ");
         String titulo = scanner.nextLine();
 
@@ -94,7 +94,7 @@ public class TarefaInterfaceUsuario {
         }
     }
 
-    private void editarTarefa() {
+    public void editarTarefa() {
         System.out.print("Digite o título da tarefa a ser editada: ");
         String tituloEditar = scanner.nextLine();
 
@@ -124,20 +124,20 @@ public class TarefaInterfaceUsuario {
             System.out.print("Digite o novo status da tarefa (Em andamento/Não concluída/Concluída): ");
             tarefaParaEditar.setStatus(scanner.nextLine());
 
-            gerenciador.editarTarefa(tituloEditar, tarefaParaEditar);
+            gerenciador.editarTarefa(tituloEditar, tarefaParaEditar) ;
             System.out.println("Tarefa editada com sucesso!");
         } else {
             System.out.println("Tarefa não encontrada: " + tituloEditar);
         }
     }
 
-    private void removerTarefa() {
+    public void removerTarefa() {
         System.out.print("Digite o título da tarefa a ser removida: ");
         String tituloRemover = scanner.nextLine();
         gerenciador.removerTarefa(tituloRemover);
     }
 
-    private void listarTarefas() {
+    public void listarTarefas() {
         List<Tarefa> tarefas = gerenciador.listarTarefas();
         if (tarefas.isEmpty()) {
             System.out.println("Nenhuma tarefa cadastrada.");
@@ -149,7 +149,7 @@ public class TarefaInterfaceUsuario {
         }
     }
 
-    private void marcarStatusTarefa() {
+    public void marcarStatusTarefa() {
         System.out.print("Digite o título da tarefa a ser atualizada: ");
         String tituloStatus = scanner.nextLine();
         System.out.print("Digite o novo status da tarefa (Em andamento/Não concluída/Concluída): ");
@@ -157,7 +157,7 @@ public class TarefaInterfaceUsuario {
         gerenciador.marcarStatusTarefa(tituloStatus, novoStatus);
     }
 
-    private void buscarTarefas() {
+    public void buscarTarefas() {
         System.out.print("Digite o termo de busca: ");
         String termoBusca = scanner.nextLine();
         List<Tarefa> tarefasEncontradas = gerenciador.buscarTarefas(termoBusca);

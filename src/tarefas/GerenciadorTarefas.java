@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface GerenciadorTarefas {
     void adicionarTarefa(Tarefa tarefa) throws PrioridadeInvalidaException;
-    void editarTarefa(String titulo, Tarefa novaTarefa) throws IllegalArgumentException;
+    void editarTarefa(String titulo, Tarefa novaTarefa);
     void removerTarefa(String titulo);
     List<Tarefa> listarTarefas();
     void marcarStatusTarefa(String titulo, String novoStatus);
