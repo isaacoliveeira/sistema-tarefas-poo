@@ -1,64 +1,16 @@
 package tarefas;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Scanner;
+import java.util.List;
 
-public class TarefaInterfaceUsuario {
+public class Usuario {
     private GerenciadorTarefas gerenciador;
     private Scanner scanner;
 
-    public TarefaInterfaceUsuario(GerenciadorTarefas gerenciador, Scanner scanner) {
+    public Usuario(GerenciadorTarefas gerenciador, Scanner scanner) {
         this.gerenciador = gerenciador;
         this.scanner = scanner;
-    }
-
-    public void mostrarMenu() {
-        System.out.println("----- OPÇÕES -----");
-        System.out.println("\r1. Adicionar Tarefa");
-        System.out.println("\r2. Editar Tarefa");
-        System.out.println("\r3. Remover Tarefa");
-        System.out.println("\r4. Listar Tarefas");
-        System.out.println("\r5. Alterar Status da Tarefa");
-        System.out.println("\r6. Buscar Tarefas");
-        System.out.println("\r7. Sair");
-        System.out.print("Escolha uma opção: ");
-    }
-
-    public void processarOpcao(int opcao) {
-        switch (opcao) {
-            case 1:
-                adicionarTarefa();
-                break;
-
-            case 2:
-                editarTarefa();
-                break;
-
-            case 3:
-                removerTarefa();
-                break;
-
-            case 4:
-                listarTarefas();
-                break;
-
-            case 5:
-                marcarStatusTarefa();
-                break;
-
-            case 6:
-                buscarTarefas();
-                break;
-
-            case 7:
-                System.out.println("Saindo do sistema.");
-                System.exit(0);
-                break;
-
-            default:
-                System.out.println("Opção inválida. Por favor, escolha uma opção válida.");
-        }
     }
 
     public void adicionarTarefa() {
@@ -91,6 +43,8 @@ public class TarefaInterfaceUsuario {
             System.out.println("Tarefa adicionada com sucesso!");
         } catch (PrioridadeInvalidaException e) {
             System.out.println("Erro: " + e.getMessage());
+        } catch (DataInvalidaException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -124,7 +78,7 @@ public class TarefaInterfaceUsuario {
             System.out.print("Digite o novo status da tarefa (Em andamento/Não concluída/Concluída): ");
             tarefaParaEditar.setStatus(scanner.nextLine());
 
-            gerenciador.editarTarefa(tituloEditar, tarefaParaEditar) ;
+            gerenciador.editarTarefa(tituloEditar, tarefaParaEditar);
             System.out.println("Tarefa editada com sucesso!");
         } else {
             System.out.println("Tarefa não encontrada: " + tituloEditar);
@@ -135,6 +89,7 @@ public class TarefaInterfaceUsuario {
         System.out.print("Digite o título da tarefa a ser removida: ");
         String tituloRemover = scanner.nextLine();
         gerenciador.removerTarefa(tituloRemover);
+        System.out.println("Tarefa removida com sucesso!");
     }
 
     public void listarTarefas() {
@@ -155,6 +110,7 @@ public class TarefaInterfaceUsuario {
         System.out.print("Digite o novo status da tarefa (Em andamento/Não concluída/Concluída): ");
         String novoStatus = scanner.nextLine();
         gerenciador.marcarStatusTarefa(tituloStatus, novoStatus);
+        System.out.println("Status da tarefa atualizado com sucesso!");
     }
 
     public void buscarTarefas() {

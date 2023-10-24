@@ -6,14 +6,13 @@ public class Main {
     public static void main(String[] args) {
         GerenciadorTarefas gerenciador = new ControleDeTarefas();
         Scanner scanner = new Scanner(System.in);
-        TarefaInterfaceUsuario tarefaIU = new TarefaInterfaceUsuario(gerenciador, scanner);
-
+        Views tarefas = new Views(gerenciador, scanner);
 
         while (true) {
-            tarefaIU.mostrarMenu();
+            tarefas.mostrarMenu();
             int opcao = scanner.nextInt();
             scanner.nextLine();
-            tarefaIU.processarOpcao(opcao);
+            tarefas.processarOpcao(opcao);
         }
     }
 }

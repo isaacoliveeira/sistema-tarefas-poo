@@ -6,16 +6,20 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ControleDeTarefas implements GerenciadorTarefas{
+public class ControleDeTarefas implements GerenciadorTarefas {
     private List<Tarefa> tarefas = new ArrayList<>();
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     @Override
-    public void adicionarTarefa(Tarefa tarefa) throws PrioridadeInvalidaException {
+    public void adicionarTarefa(Tarefa tarefa) throws PrioridadeInvalidaException, DataInvalidaException {
         if (tarefa.getPrioridade().equalsIgnoreCase("Alta") ||
                 tarefa.getPrioridade().equalsIgnoreCase("Média") ||
                 tarefa.getPrioridade().equalsIgnoreCase("Baixa")) {
-            tarefas.add(tarefa);
+            if (dataValida(tarefa.getPrazo().format(formatter))) {
+                tarefas.add(tarefa);
+            } else {
+                throw new DataInvalidaException("Data de prazo inválida. Deve ser igual ou posterior à data atual.");
+            }
         } else {
             throw new PrioridadeInvalidaException("Prioridade inválida.");
         }
@@ -42,6 +46,7 @@ public class ControleDeTarefas implements GerenciadorTarefas{
             tarefas.remove(tarefa);
         }
     }
+
 
     @Override
     public List<Tarefa> listarTarefas() {
@@ -98,4 +103,3 @@ public class ControleDeTarefas implements GerenciadorTarefas{
         return LocalDate.now();
     }
 }
-
