@@ -2,9 +2,9 @@ package tarefas;
 
 import java.util.Scanner;
 
-public class Views extends Usuario{
+public class Menu extends Usuario {
 
-    public Views(GerenciadorTarefas gerenciador, Scanner scanner){
+    public Menu(GerenciadorTarefas gerenciador, Scanner scanner) {
         super(gerenciador, scanner);
     }
 

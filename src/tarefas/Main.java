@@ -6,7 +6,7 @@ public class Main {
     public static void main(String[] args) {
         GerenciadorTarefas gerenciador = new ControleDeTarefas();
         Scanner scanner = new Scanner(System.in);
-        Views tarefas = new Views(gerenciador, scanner);
+        Menu tarefas = new Menu(gerenciador, scanner);
 
         while (true) {
             tarefas.mostrarMenu();
