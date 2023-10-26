@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 
-public class Tarefa{
+public class Tarefa {
     private String titulo;
     private String descricao;
     private LocalDate prazo;
@@ -17,7 +17,7 @@ public class Tarefa{
         this.prazo = prazo;
         this.prioridade = prioridade;
         this.status = status;
-    }
+    } 
 
     public String getTitulo() {
         return titulo;

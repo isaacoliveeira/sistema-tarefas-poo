@@ -7,8 +7,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ControleDeTarefas implements GerenciadorTarefas {
+
     private List<Tarefa> tarefas = new ArrayList<>();
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private String arquivoCSV;  // Caminho para o arquivo CSV
+
+    public ControleDeTarefas(String arquivoCSV) {
+        this.arquivoCSV = arquivoCSV;
+    }
+
 
     @Override
     public void adicionarTarefa(Tarefa tarefa) throws PrioridadeInvalidaException, DataInvalidaException {
@@ -46,7 +53,6 @@ public class ControleDeTarefas implements GerenciadorTarefas {
             tarefas.remove(tarefa);
         }
     }
-
 
     @Override
     public List<Tarefa> listarTarefas() {
@@ -102,4 +108,11 @@ public class ControleDeTarefas implements GerenciadorTarefas {
     public LocalDate getDataAtual() {
         return LocalDate.now();
     }
+
+    @Override
+    public void salvarTarefasEmArquivoCSV(String arquivoCSV) {
+        Dados.salvarTarefasEmCSV(tarefas, arquivoCSV);
+    }
+    
 }
+

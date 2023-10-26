@@ -12,6 +12,6 @@ public interface GerenciadorTarefas {
     List<Tarefa> buscarTarefas(String termo);
     boolean dataValida(String data);
     DateTimeFormatter getFormatter();
-
     Tarefa buscarTarefaPorTitulo(String tituloEditar);
-}
+    void salvarTarefasEmArquivoCSV(String arquivoCSV);
+} 

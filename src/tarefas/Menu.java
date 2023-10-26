@@ -3,7 +3,6 @@ package tarefas;
 import java.util.Scanner;
 
 public class Menu extends Usuario {
-
     public Menu(GerenciadorTarefas gerenciador, Scanner scanner) {
         super(gerenciador, scanner);
     }
@@ -56,4 +55,3 @@ public class Menu extends Usuario {
         }
     }
 }
-   
