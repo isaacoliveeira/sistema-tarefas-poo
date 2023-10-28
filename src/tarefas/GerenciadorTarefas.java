@@ -1,17 +1,14 @@
 package tarefas;
 
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public interface GerenciadorTarefas {
-    void adicionarTarefa(Tarefa tarefa) throws PrioridadeInvalidaException, DataInvalidaException;
-    void editarTarefa(String titulo, Tarefa novaTarefa) throws IllegalArgumentException;
-    void removerTarefa(String titulo);
-    List<Tarefa> listarTarefas();
-    void marcarStatusTarefa(String titulo, String novoStatus);
-    List<Tarefa> buscarTarefas(String termo);
-    boolean dataValida(String data);
-    DateTimeFormatter getFormatter();
-    Tarefa buscarTarefaPorTitulo(String tituloEditar);
-    void salvarTarefasEmArquivoCSV(String arquivoCSV);
-} 
+    void criarTarefa(String titulo, String descricao, String status, String prazo) throws TarefaException;
+
+    void criarTarefa(String titulo, String descricao, String status) throws TarefaException;
+
+    void removerTarefa(int id) throws TarefaException;
+    List<String> listarTarefas() throws TarefaException;
+    List<String> buscarTarefas(String termo) throws TarefaException;
+    void alterarStatusTarefa(int id, String novoStatus) throws TarefaException;
+}

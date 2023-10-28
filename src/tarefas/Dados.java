@@ -1,134 +1,113 @@
 package tarefas;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
+import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.util.Locale;
 
 public class Dados implements GerenciadorTarefas {
+    private final String arquivo;
+    private List<String> tarefas;
 
-    private List<Tarefa> tarefas = new ArrayList<>();
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    private String arquivoCSV;  
-
-    public Dados(String arquivoCSV) {
-        this.arquivoCSV = arquivoCSV;
+    public Dados(String arquivo) {
+        this.arquivo = arquivo;
+        this.tarefas = new ArrayList<>();
     }
 
-    public static void salvarTarefasEmCSV(List<Tarefa> tarefas, String arquivoCSV) {
-        try (FileWriter writer = new FileWriter(arquivoCSV)) {
-            writer.write("Titulo,Descricao,Prazo,Prioridade,Status\n");
-            for (Tarefa tarefa : tarefas) {
-                String linha = String.format("%s,%s,%s,%s,%s\n",
-                        tarefa.getTitulo(), tarefa.getDescricao(), tarefa.getPrazo(), tarefa.getPrioridade(), tarefa.getStatus());
-                writer.write(linha);
+    private void salvarDados() {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(arquivo))) {
+            for (String tarefa : tarefas) {
+                writer.println(tarefa);
             }
-            System.out.println("Tarefas salvas com sucesso em " + arquivoCSV);
         } catch (IOException e) {
-            System.err.println("Erro ao salvar as tarefas em " + arquivoCSV);
+            System.err.println("Erro ao escrever no arquivo: " + e.getMessage());
         }
     }
 
-
     @Override
-    public void adicionarTarefa(Tarefa tarefa) throws PrioridadeInvalidaException, DataInvalidaException {
-        if (tarefa.getPrioridade().equalsIgnoreCase("Alta") ||
-                tarefa.getPrioridade().equalsIgnoreCase("Média") ||
-                tarefa.getPrioridade().equalsIgnoreCase("Baixa")) {
-            if (dataValida(tarefa.getPrazo().format(formatter))) {
-                tarefas.add(tarefa);
-            } else {
-                throw new DataInvalidaException("Data de prazo inválida. Deve ser igual ou posterior à data atual.");
+    public void criarTarefa(String titulo, String descricao, String status, String prazo) throws TarefaException {
+        if (titulo.isEmpty() || descricao.isEmpty() || status.isEmpty() || prazo.isEmpty()) {
+            throw new TarefaException("Título, descrição, status ou prazo não podem estar vazios");
+        }
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        try {
+            Date dataPrazo = sdf.parse(prazo);
+            Date dataAtual = new Date();
+
+            if (dataPrazo.before(dataAtual)) {
+                throw new TarefaException("A data de prazo não pode ser anterior à data atual");
             }
+        } catch (ParseException e) {
+            throw new TarefaException("Formato de data inválido. Use o formato dd/MM/aaaa");
+        }
+
+        String novaTarefa = String.format("Título: %s | Descrição: %s | Status: %s | Prazo: %s", titulo, descricao, status, prazo);
+        tarefas.add(novaTarefa);
+        salvarDados();
+        System.out.println("Tarefa criada com sucesso!");
+    }
+
+    @Override
+    public void criarTarefa(String titulo, String descricao, String status) throws TarefaException {
+        if (titulo.isEmpty() || descricao.isEmpty() || status.isEmpty()) {
+            throw new TarefaException("Título, descrição ou status não podem estar vazios");
+        }
+
+        String novaTarefa = String.format("Título: %s | Descrição: %s | Status: %s", titulo, descricao, status);
+        tarefas.add(novaTarefa);
+        salvarDados();
+        System.out.println("Tarefa criada com sucesso!");
+    }
+
+    @Override
+    public void removerTarefa(int id) {
+        if (id >= 0 && id < tarefas.size()) {
+            tarefas.remove(id);
+            salvarDados();
+            System.out.println("Tarefa removida com sucesso!");
         } else {
-            throw new PrioridadeInvalidaException("Prioridade inválida.");
+            System.out.println("ID de tarefa inválido.");
         }
     }
 
     @Override
-    public void editarTarefa(String titulo, Tarefa novaTarefa) throws IllegalArgumentException {
-        Tarefa tarefaExistente = buscarTarefaPorTitulo(titulo);
-        if (tarefaExistente != null) {
-            tarefaExistente.setTitulo(novaTarefa.getTitulo());
-            tarefaExistente.setDescricao(novaTarefa.getDescricao());
-            tarefaExistente.setPrazo(novaTarefa.getPrazo());
-            tarefaExistente.setPrioridade(novaTarefa.getPrioridade());
-            tarefaExistente.setStatus(novaTarefa.getStatus());
-        } else {
-            throw new IllegalArgumentException("Tarefa não encontrada: " + titulo);
-        }
+    public List<String> listarTarefas() {
+        return new ArrayList<>(tarefas);
     }
 
     @Override
-    public void removerTarefa(String titulo) {
-        Tarefa tarefa = buscarTarefaPorTitulo(titulo);
-        if (tarefa != null) {
-            tarefas.remove(tarefa);
-        }
-    }
-
-    @Override
-    public List<Tarefa> listarTarefas() {
-        return tarefas;
-    }
-
-    @Override
-    public void marcarStatusTarefa(String titulo, String novoStatus) {
-        Tarefa tarefa = buscarTarefaPorTitulo(titulo);
-        if (tarefa != null) {
-            tarefa.setStatus(novoStatus);
-        } else {
-            throw new IllegalArgumentException("Tarefa não encontrada: " + titulo);
-        }
-    }
-
-    @Override
-    public List<Tarefa> buscarTarefas(String termo) {
-        List<Tarefa> tarefasEncontradas = new ArrayList<>();
-        for (Tarefa tarefa : tarefas) {
-            if (tarefa.getTitulo().toLowerCase().contains(termo.toLowerCase()) ||
-                    tarefa.getDescricao().toLowerCase().contains(termo.toLowerCase())) {
+    public List<String> buscarTarefas(String termo) {
+        List<String> tarefasEncontradas = new ArrayList<>();
+        for (String tarefa : tarefas) {
+            if (tarefa.contains(termo)) {
                 tarefasEncontradas.add(tarefa);
             }
         }
         return tarefasEncontradas;
     }
-
     @Override
-    public boolean dataValida(String data) {
-        try {
-            LocalDate dataFornecida = LocalDate.parse(data, formatter);
-            return !dataFornecida.isBefore(getDataAtual());
-        } catch (DateTimeParseException e) {
-            return false;
+    public void alterarStatusTarefa(int id, String novoStatus) throws TarefaException {
+        if (id < 0 || id >= tarefas.size()) {
+            throw new TarefaException("ID de tarefa inválido");
+        }
+
+        String tarefa = tarefas.get(id);
+        String[] dadosTarefa = tarefa.split("\\|");
+        if (dadosTarefa.length < 3) {
+            throw new TarefaException("Dados da tarefa estão incompletos");
+        }
+
+        String prazo = dadosTarefa[3].trim();
+        if (novoStatus.equalsIgnoreCase("concluida") || novoStatus.equalsIgnoreCase("nao concluida") || novoStatus.equalsIgnoreCase("em andamento")) {
+            tarefas.set(id, String.format("Título: %s | Descrição: %s | Status: %s | Prazo: %s", dadosTarefa[0], dadosTarefa[1], novoStatus, prazo));
+            salvarDados();
+            System.out.println("Status da tarefa alterado com sucesso!");
+        } else {
+            throw new TarefaException("Opção de status inválida. Use 'Concluida', 'Nao Concluida' ou 'Em Andamento'");
         }
     }
-
-    @Override
-    public DateTimeFormatter getFormatter() {
-        return formatter;
-    }
-
-    public Tarefa buscarTarefaPorTitulo(String titulo) {
-        for (Tarefa tarefa : tarefas) {
-            if (tarefa.getTitulo().equals(titulo)) {
-                return tarefa;
-            }
-        }
-        return null;
-    }
-
-    public LocalDate getDataAtual() {
-        return LocalDate.now();
-    }
-
-    @Override
-    public void salvarTarefasEmArquivoCSV(String arquivoCSV) {
-        salvarTarefasEmCSV(tarefas, arquivoCSV);
-    }
-    
 }
-

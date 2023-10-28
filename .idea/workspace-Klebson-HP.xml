@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8fe630af-54be-4d22-9b51-ccc583c98e33" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="package-info" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/tarefas/Usuario.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2Wr2mWcKRJqKgtA1N5L5JioiRVx" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Notification.DisplayName-DoNotAsk-JDK resolve problems&quot;: &quot;Failed to resolve JDK&quot;,
+    &quot;Notification.DoNotAsk-JDK resolve problems&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/klebs/OneDrive/Documentos/GitHub/sistema-tarefas-poo&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="$PROJECT_DIR$/../../../../../../Program Files/Java/zulu21.30.15-ca-jdk21.0.1-win_x64" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="tarefas.Main" />
+      <module name="sistemas-tarefas-poo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tarefas.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8fe630af-54be-4d22-9b51-ccc583c98e33" name="Changes" comment="" />
+      <created>1697476541011</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1697476541011</updated>
+      <workItem from="1697476542067" duration="3458000" />
+      <workItem from="1697480055031" duration="290000" />
+      <workItem from="1697482635588" duration="114000" />
+      <workItem from="1697484153890" duration="1983000" />
+      <workItem from="1697504572364" duration="3978000" />
+      <workItem from="1697508831704" duration="244000" />
+      <workItem from="1697509693324" duration="801000" />
+      <workItem from="1697510629750" duration="437000" />
+      <workItem from="1697560569521" duration="39000" />
+      <workItem from="1697561932090" duration="155000" />
+      <workItem from="1697563065959" duration="2883000" />
+      <workItem from="1697573392786" duration="5584000" />
+      <workItem from="1697581617548" duration="703000" />
+      <workItem from="1697583864058" duration="1668000" />
+      <workItem from="1697630615301" duration="92000" />
+      <workItem from="1697630720392" duration="1431000" />
+      <workItem from="1697637768466" duration="14000" />
+      <workItem from="1697736657934" duration="606000" />
+      <workItem from="1697737294709" duration="693000" />
+      <workItem from="1697738110560" duration="613000" />
+      <workItem from="1697750756136" duration="4901000" />
+      <workItem from="1697989932085" duration="66000" />
+      <workItem from="1697990000929" duration="28000" />
+      <workItem from="1697990327654" duration="583000" />
+      <workItem from="1697990925185" duration="123000" />
+      <workItem from="1698081682694" duration="32000" />
+      <workItem from="1698081974846" duration="44000" />
+      <workItem from="1698103917593" duration="246000" />
+      <workItem from="1698104184636" duration="835000" />
+      <workItem from="1698105043622" duration="9818000" />
+      <workItem from="1698169746335" duration="128000" />
+      <workItem from="1698173298252" duration="2122000" />
+      <workItem from="1698177704386" duration="57000" />
+      <workItem from="1698185558760" duration="1510000" />
+      <workItem from="1698198342353" duration="1300000" />
+      <workItem from="1698235000749" duration="39000" />
+      <workItem from="1698235651234" duration="1039000" />
+      <workItem from="1698238483515" duration="1871000" />
+      <workItem from="1698244340256" duration="7000" />
+      <workItem from="1698348050711" duration="647000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
