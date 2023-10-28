@@ -52,18 +52,6 @@ public class Dados implements GerenciadorTarefas {
     }
 
     @Override
-    public void criarTarefa(String titulo, String descricao, String status) throws TarefaException {
-        if (titulo.isEmpty() || descricao.isEmpty() || status.isEmpty()) {
-            throw new TarefaException("Título, descrição ou status não podem estar vazios");
-        }
-
-        String novaTarefa = String.format("Título: %s | Descrição: %s | Status: %s", titulo, descricao, status);
-        tarefas.add(novaTarefa);
-        salvarDados();
-        System.out.println("Tarefa criada com sucesso!");
-    }
-
-    @Override
     public void removerTarefa(int id) {
         if (id >= 0 && id < tarefas.size()) {
             tarefas.remove(id);

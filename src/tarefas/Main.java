@@ -42,13 +42,13 @@ public class Main extends Login{
                     criarTarefa(gerenciador, scanner);
                     break;
                 case 2:
-                    removerTarefa(gerenciador, scanner);
+                    usuario.removerTarefa(gerenciador, scanner);
                     break;
                 case 3:
-                    listarTarefas(gerenciador);
+                    usuario.listarTarefas(gerenciador);
                     break;
                 case 4:
-                    buscarTarefas(gerenciador, scanner);
+                    usuario.buscarTarefas(gerenciador, scanner);
                     break;
                 case 5:
                     alterarStatusTarefa(gerenciador, scanner);
