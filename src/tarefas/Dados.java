@@ -17,7 +17,7 @@ public class Dados implements GerenciadorTarefas {
         this.tarefas = new ArrayList<>();
     }
 
-    private void salvarDados() {
+    public void salvarDados() {
         try (PrintWriter writer = new PrintWriter(new FileWriter(arquivo))) {
             for (String tarefa : tarefas) {
                 writer.println(tarefa);

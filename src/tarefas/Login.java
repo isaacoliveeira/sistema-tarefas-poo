@@ -5,9 +5,9 @@ import java.util.Scanner;
 
 public class Login {
 
-    Scanner scanner = new Scanner(System.in);
-    GerenciadorTarefas gerenciador = new Dados("tarefas.csv");
-    Usuario usuario = new Usuario();
+    private Scanner scanner = new Scanner(System.in);
+    private GerenciadorTarefas gerenciador = new Dados("tarefas.csv");
+    private Usuario usuario = new Usuario();
 
     public static void removerTarefa(GerenciadorTarefas gerenciador, Scanner scanner) throws TarefaException {
         System.out.print("Digite o ID da tarefa a ser removida: ");
