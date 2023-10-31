@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Scanner;
 
 public class Dados implements GerenciadorTarefas {
     private final String arquivo;
@@ -29,27 +30,40 @@ public class Dados implements GerenciadorTarefas {
 
     @Override
     public void criarTarefa(String titulo, String descricao, String status, String prazo) throws TarefaException {
-        if (titulo.isEmpty() || descricao.isEmpty() || status.isEmpty() || prazo.isEmpty()) {
-            throw new TarefaException("Título, descrição, status ou prazo não podem estar vazios");
-        }
+    if (titulo.isEmpty() || descricao.isEmpty() || status.isEmpty() || prazo.isEmpty()) {
+        throw new TarefaException("Título, descrição, status ou prazo não podem estar vazios");
+    }
 
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+    Date dataPrazo = null;
+    boolean dataValida = false;
+
+    while (!dataValida) {
         try {
-            Date dataPrazo = sdf.parse(prazo);
+            dataPrazo = sdf.parse(prazo);
+
             Date dataAtual = new Date();
 
             if (dataPrazo.before(dataAtual)) {
-                throw new TarefaException("A data de prazo não pode ser anterior à data atual");
+                System.out.println("A data de prazo não pode ser anterior à data atual. Por favor, insira uma data superior a hoje: (dd/MM/yyyy)");
+                Scanner scanner = new Scanner(System.in);
+                prazo = scanner.nextLine();
+            } else {
+                dataValida = true;
             }
         } catch (ParseException e) {
-            throw new TarefaException("Formato de data inválido. Use o formato dd/MM/aaaa");
+            System.out.println("Formato de data inválido. Use o formato dd/MM/aaaa");
+            Scanner scanner = new Scanner(System.in);
+            prazo = scanner.nextLine();
         }
-
-        String novaTarefa = String.format("Título: %s | Descrição: %s | Status: %s | Prazo: %s", titulo, descricao, status, prazo);
-        tarefas.add(novaTarefa);
-        salvarDados();
-        System.out.println("Tarefa criada com sucesso!");
     }
+
+    String novaTarefa = String.format("Título: %s | Descrição: %s | Status: %s | Prazo: %s", titulo, descricao, status, sdf.format(dataPrazo));
+    tarefas.add(novaTarefa);
+    salvarDados();
+    System.out.println("Tarefa criada com sucesso!");
+}
+
 
     @Override
     public void removerTarefa(int id) {
