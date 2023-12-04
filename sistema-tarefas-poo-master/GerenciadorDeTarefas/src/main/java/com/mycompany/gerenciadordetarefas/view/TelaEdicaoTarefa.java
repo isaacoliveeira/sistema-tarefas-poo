@@ -174,7 +174,7 @@ public class TelaEdicaoTarefa extends javax.swing.JFrame {
     }
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        dispose(); 
     }
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) throws IOException {
@@ -218,17 +218,32 @@ public class TelaEdicaoTarefa extends javax.swing.JFrame {
     
     private boolean editarTarefa(Tarefa tarefaOriginal, Tarefa tarefaEditada) throws IOException {
         List<Tarefa> tarefas = TarefaRepository.carregarTarefas(usuarioLogado);
-
+    
+        // Verificar se o novo título já existe
+        if (tarefaJaExiste(tarefaEditada, tarefas)) {
+            JOptionPane.showMessageDialog(this, "Erro: O título escolhido já está em uso por outra tarefa. Por favor, escolha um título único.", "Erro", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+    
         int indice = tarefas.indexOf(tarefaOriginal);
-
+    
         if (indice != -1) {
             tarefas.set(indice, tarefaEditada);
             tarefaPersistence.salvarTarefas(tarefas);
-
+    
             return true;
         }
-
+    
         return false;
+    }
+
+    private boolean tarefaJaExiste(Tarefa tarefaAtual, List<Tarefa> tarefas) {
+        for (Tarefa tarefa : tarefas) {
+            if (tarefa.getTitulo().equalsIgnoreCase(tarefaAtual.getTitulo()) && !tarefa.equals(tarefaAtual)) {
+                return true; // Título duplicado encontrado, mas não é o da tarefa atual
+            }
+        }
+        return false; // Título não duplicado
     }
 
 

@@ -176,20 +176,6 @@ public class InterfaceTarefa extends javax.swing.JFrame {
         }
     }
 
-//    public void cadastrarTarefa(String usuario) throws ParseException, main.java.com.mycompany.gerenciadordetarefas.controller.DataInvalidaException, IOException {
-//        Tarefa novaTarefa = new Tarefa(
-//                usuario,
-//                jTextFieldTitulo.getText(),
-//                jTextArea1.getText(),
-//                DataValidator.validarData(jFormattedTextFieldData.getText()),
-//                jRadioButtonConcluida.isSelected(),
-//                obterImportanciaSelecionada()
-//        );
-//
-//        tarefaController.cadastrarTarefa(novaTarefa);
-//
-//        JOptionPane.showMessageDialog(this, "Tarefa cadastrada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-//    }
 
     public void cadastrarTarefa(String usuario) throws ParseException, DataInvalidaException, IOException {
         String titulo = jTextFieldTitulo.getText();

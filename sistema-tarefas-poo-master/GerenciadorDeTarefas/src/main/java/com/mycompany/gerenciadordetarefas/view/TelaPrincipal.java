@@ -200,9 +200,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 atualizarListaTarefas(TarefaRepository.carregarTarefas(usuarioLogado));
             }
         } else {
-            System.out.println("Nenhuma tarefa selecionada para editar.");
+            JOptionPane.showMessageDialog(this, "Selecione uma tarefa para editar.", "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
+    
+    
 
     private Tarefa obterTarefaSelecionada(int selectedIndex) {
         DefaultListModel<Tarefa> model = (DefaultListModel<Tarefa>) jList1.getModel();
